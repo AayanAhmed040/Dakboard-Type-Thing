@@ -153,15 +153,7 @@
     </div>
 
     <div class="right-panel">
-      <div class="progress-group">
-        <div class="label" id="schoolLabel">School Progress</div>
-        <div class="progress-container">
-          <div class="progress-bar" id="schoolBar"></div>
-        </div>
-        <div class="progress-text" id="schoolText"></div>
-        <div class="days-left" id="schoolDaysLeft"></div>
-      </div>
-
+      <!-- Year Progress FIRST -->
       <div class="progress-group">
         <div class="label">Year Progress Bar</div>
         <div class="progress-container">
@@ -170,7 +162,17 @@
         <div class="progress-text" id="yearText"></div>
         <div class="days-left" id="yearDaysLeft"></div>
       </div>
-    </div>
+    
+      <!-- School Progress SECOND -->
+      <div class="progress-group" id="schoolProgressGroup">
+        <div class="label" id="schoolLabel">School Progress</div>
+        <div class="progress-container">
+          <div class="progress-bar" id="schoolBar"></div>
+        </div>
+        <div class="progress-text" id="schoolText"></div>
+        <div class="days-left" id="schoolDaysLeft"></div>
+      </div>
+    </div>    
   </div>
 
   <div class="bottom-bar">
@@ -268,7 +270,7 @@
       document.getElementById('schoolDaysLeft').textContent = `${daysLeft} days left`;
     }
 
-    document.querySelector('.progress-group').addEventListener('click', () => {
+    document.getElementById('schoolLabel').parentElement.addEventListener('click', () => {
       progressMode = (progressMode + 1) % progressModes.length;
       updateProgressBars();
     });
