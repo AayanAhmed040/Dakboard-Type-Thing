@@ -27,11 +27,13 @@
       padding: 40px;
       flex-grow: 1;
       width: 100%;
+      flex-wrap: wrap;
     }
 
     .left-panel {
       text-align: left;
       max-width: 300px;
+      margin-bottom: 20px;
     }
 
     .time {
@@ -56,12 +58,15 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-end;
-      gap: 100px;
+      gap: 40px;
     }
 
     .progress-group {
       width: 100%;
       text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .label {
@@ -99,13 +104,33 @@
     }
 
     .crypto-widget {
-      text-align: center;
-      padding: 10px 0 20px;
-      margin-left: -400px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0 40px;
     }
-    
 
+    @media (max-width: 800px) {
+      .right-panel {
+        align-items: center;
+        gap: 30px;
+      }
 
+      .progress-group {
+        align-items: center;
+        text-align: center;
+      }
+
+      .crypto-widget {
+        padding-bottom: 40px;
+      }
+
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -152,48 +177,17 @@
     </div>
   </div>
 
- <!-- Crypto Widget at the Bottom Center -->
-  <script>
-    function loadCryptoWidget() {
-      // Remove the existing widget
-      const widgetElement = document.getElementById('crypto-widget-CoinBlocks');
-      if (widgetElement) {
-        widgetElement.remove();
-        const newWidget = document.createElement('div');
-        newWidget.id = 'crypto-widget-CoinBlocks';
-        newWidget.setAttribute('data-transparent', 'true');
-        newWidget.setAttribute('data-design', 'modern');
-        newWidget.setAttribute('data-coin-ids', '1,166,1986');
-        document.body.appendChild(newWidget);
-  
-      // Reinitialize the widget script
-      const script = document.createElement('script');
-      script.src = 'https://price-static.crypto.com/latest/public/static/widget/index.js';
-      document.body.appendChild(script);
-      }
-  
-      // Create the new widget
-      const newWidget = document.createElement('div');
-      newWidget.id = 'crypto-widget-CoinBlocks';
-      newWidget.setAttribute('data-transparent', 'true');
-      newWidget.setAttribute('data-design', 'modern');
-      newWidget.setAttribute('data-coin-ids', '1,166,1986');
-      document.body.appendChild(newWidget);
-  
-      // Reinitialize the widget script
-      const script = document.createElement('script');
-      script.src = 'https://price-static.crypto.com/latest/public/static/widget/index.js';
-      document.body.appendChild(script);
-    }
-  
-    // Initial load of the crypto widget
-    loadCryptoWidget();
-  
-    // Reload the widget every 2 minutes (120,000 ms)
-    setInterval(loadCryptoWidget, 120000);
-  </script>
-  
-  
+  <!-- Crypto Widget at the Bottom Center -->
+  <div class="crypto-widget">
+    <script src="https://widgets.coingecko.com/gecko-coin-price-static-headline-widget.js"></script>
+    <gecko-coin-price-static-headline-widget
+      locale="en"
+      transparent-background="true"
+      outlined="true"
+      coin-ids="bitcoin,ethereum,solana"
+      initial-currency="usd">
+    </gecko-coin-price-static-headline-widget>
+  </div>
 
   <script>
     function updateTimeAndDate() {
