@@ -1,0 +1,13 @@
+*.class
+
+bin/
+out/
+target/
+build/
+
+.vscode/
+
+.DS_Store
+Thumbs.db
+
+*.log
